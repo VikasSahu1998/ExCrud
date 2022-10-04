@@ -11,6 +11,10 @@
                     <input matInput placeholder="John kerry" formControlName="name">
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                     <mat-hint>Your Name</mat-hint>
+                    <mat-error
+                        *ngIf="empform.get('name')?.invalid && (empform.get('name')?.dirty || empform.get('name')?.touched) && empform.get('name')?.errors?.required">
+                        name is required
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -21,11 +25,19 @@
                     <input matInput placeholder="E-Mail" formControlName="email">
                     <mat-icon matSuffix>alternate_email</mat-icon>
                     <mat-hint>Example@gmail.com</mat-hint>
+                    <mat-error
+                        *ngIf="!empform.get('email')?.errors?.required && (empform.get('email')?.errors?.pattern)">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error
+                        *ngIf="empform.get('email')?.invalid && (empform.get('email')?.dirty || empform.get('email')?.touched) && empform.get('email')?.errors?.required">
+                        Email is required
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <!-- button Submit -->
-            <div >
+            <div>
                 <button mat-raised-button color="primary" style="width:100%; margin-top: 1cm;" (click)="adddetail()"
                     mat-button>{{button1}}</button>
             </div>

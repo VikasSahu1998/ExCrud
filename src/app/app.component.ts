@@ -5,6 +5,7 @@ import { ApiService } from './services/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(public dialog: MatDialog, private api: ApiService) { }
+  constructor(public dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getalldetail();
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit {
 
         },
         error: (err) => {
-          alert("error while fetching the data");
+          this.toastr.error('error while fetching the data', 'error', { timeOut: 2000, });
         }
       })
   }
@@ -65,11 +66,11 @@ export class AppComponent implements OnInit {
     this.api.deleteEmp(id)
       .subscribe({
         next: (res) => {
-          alert("details deleted successfully");
+          this.toastr.success('details deleted successfully', 'successfully', { timeOut: 2000, });
           this.getalldetail();
         },
         error: () => {
-          alert("Something went wrong ")
+          this.toastr.error('someting went wrong', 'error', { timeOut: 2000, });
         }
       })
   }
