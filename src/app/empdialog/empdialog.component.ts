@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
